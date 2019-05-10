@@ -1,0 +1,35 @@
+{
+  "name": "js-http-playground",
+  "version": "0.2.18",
+  "description": "Useful examples of how to build with the JS HTTP Client",
+  "main": "index.ts",
+  "scripts": {
+    "run": "jest --no-watchman"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/textileio/js-http-playground.git"
+  },
+  "keywords": [
+    "textile",
+    "ipfs",
+    "javascript",
+    "typescript"
+  ],
+  "author": "Textile",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/textileio/js-http-playground/issues"
+  },
+  "homepage": "https://github.com/textileio/js-http-playground#readme",
+  "devDependencies": {
+    "@textile/js-http-client": "0.2.18",
+    "@textile/tslint-rules": "^1.0.3",
+    "@types/jest": "^24.0.11",
+    "jest": "^24.5.0",
+    "jest-cli": "^24.5.0",
+    "ts-jest": "^24.0.0",
+    "tslint": "^5.14.0",
+    "typescript": "^3.3.4000"
+  }
+}
