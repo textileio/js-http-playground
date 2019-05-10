@@ -4,7 +4,7 @@
   "description": "Useful examples of how to build with the JS HTTP Client",
   "main": "index.ts",
   "scripts": {
-    "run": "jest --no-watchman"
+    "run": "jest --no-watchman --bail --runInBand --no-watchman"
   },
   "repository": {
     "type": "git",

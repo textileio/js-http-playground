@@ -2,6 +2,7 @@
 dist/
 
 # Logs
+report.*
 logs
 *.log
 npm-debug.log*
