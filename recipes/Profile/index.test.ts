@@ -21,14 +21,13 @@ describe('Explore connected profile', () => {
   })
   it('2. Get your full profile', async () => {
     profile = await textile.profile.get()
-    await expect(profile).toBeTruthy()
     await expect(profile.name).toEqual(name)
     console.info('Your ID is:', profile.id)
   })
   it('3. Update your profile name', async () => {
     success = await textile.profile.setName('Anonymous')
     await expect(success).toBeTruthy()
-    let updatedProfile = await textile.profile.get()
+    const updatedProfile = await textile.profile.get()
     console.info('Profile name updated to:', updatedProfile.name)
     await expect(updatedProfile.name).toEqual('Anonymous')
   })
