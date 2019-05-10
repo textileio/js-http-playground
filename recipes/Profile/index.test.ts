@@ -8,6 +8,8 @@ import textile, { Peer } from '@textile/js-http-client'
  * default ports.
  */
 
+jest.setTimeout(10000)
+
 describe('Explore connected profile', () => {
   let profile: Peer
   let name: string
