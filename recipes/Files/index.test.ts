@@ -1,5 +1,7 @@
-import textile, { Thread } from '@textile/js-http-client'
-import * as schemas from '../data/schemas.json'
+import textile from '@textile/js-http-client'
+import * as fs from 'fs'
+import * as path from 'path'
+import { createLocationDataThread, locationDataThreadKey, createBlobThread, removeLocationDataThread, removeBlobThread, blobThreadKey } from '../Threads/index'
 
 /**
  * INFO:
@@ -9,24 +11,16 @@ import * as schemas from '../data/schemas.json'
  * default ports.
  */
 
-const locationDataThreadKey = 'io.textile.playground-locationData-v0.0.1'
 
-jest.setTimeout(25000)
+jest.setTimeout(35000)
 
 beforeAll(async (done) => {
-  // Setting up the required Threads for Files API examples below
-  const locationDataThreadSchema = schemas[locationDataThreadKey]
-  // Ensure the schema is available to the node
-  const locationSchema = await textile.schemas.add(locationDataThreadSchema)
-  // Create the thread with the supplied schema, only if it doesn't exist
-  const thread = await textile.threads.getByKey(locationDataThreadKey)
-  if (!thread) {
-    await textile.threads.add('My Places', locationSchema.hash, locationDataThreadKey, 'private', 'invite_only')
-  }
+  await createLocationDataThread()
+  await createBlobThread()
   done()
 })
 
-describe('Files API Examples', () => {
+describe('Files API Recipes', () => {
   it('Add and retrieve JSON data to a /json schema Thread', async (done) => {
     const thread = await textile.threads.getByKey(locationDataThreadKey)
     if (!thread) {
@@ -48,13 +42,29 @@ describe('Files API Examples', () => {
     }
     done()
   })
+
+  it.only('Add and retrieve buffer data to a /blob schema Thread', async (done) => {
+    const thread = await textile.threads.getByKey(blobThreadKey)
+    if (thread) {
+      try {
+        const file = path.resolve(__dirname, '../assets/edba-3756.mp3')
+        const data = await fs.readFileSync(file, { encoding: 'base64' })
+        const added = await textile.files.add(
+                        data,
+                        'hello world',
+                        thread.id
+                      )
+      } catch (error) {
+        console.info('Blob example failed with error:', error)
+      }
+    }
+    done()
+  })
 })
 
 afterAll(async (done) => {
   // Removing the Threads used in the Files API examples
-  const thread = await textile.threads.getByKey(locationDataThreadKey)
-  if (thread) {
-    await textile.threads.remove(thread.id)
-  }
+  await removeLocationDataThread()
+  await removeBlobThread()
   done()
 })

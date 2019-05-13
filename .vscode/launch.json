@@ -52,6 +52,7 @@
         "--runInBand",
         "--config",
         "--no-watchman",
+        "--detectOpenHandles",
         "jest.config.js"
       ],
       "console": "integratedTerminal",
