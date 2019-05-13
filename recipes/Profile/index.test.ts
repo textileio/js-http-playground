@@ -35,6 +35,6 @@ describe('Profile API Examples', () => {
     // Jest Tests to ensure your account reverted successfully
     await expect(success).toBeTruthy()
     await expect((await textile.profile.get()).name).toEqual(name)
-    return done()
+    done()
   })
 })

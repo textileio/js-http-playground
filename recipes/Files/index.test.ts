@@ -23,7 +23,7 @@ beforeAll(async (done) => {
   if (!thread) {
     await textile.threads.add('My Places', locationSchema.hash, locationDataThreadKey, 'private', 'invite_only')
   }
-  return done()
+  done()
 })
 
 describe('Files API Examples', () => {
@@ -46,7 +46,7 @@ describe('Files API Examples', () => {
     } catch (error) {
       console.info('JSON example failed with error:', error)
     }
-    return done()
+    done()
   })
 })
 
@@ -56,5 +56,5 @@ afterAll(async (done) => {
   if (thread) {
     await textile.threads.remove(thread.id)
   }
-  return done()
+  done()
 })

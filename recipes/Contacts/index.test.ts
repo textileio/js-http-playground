@@ -24,8 +24,7 @@ describe('Contacts API Examples', () => {
         resultCount += 1
       } catch (err) {
         reader.cancel('error')
-        done()
-        return
+        return done()
       }
       reader.read().then(read)
     }
