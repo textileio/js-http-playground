@@ -11,11 +11,12 @@ import textile, { Peer } from '@textile/js-http-client'
 jest.setTimeout(15000)
 
 describe('Profile API examples', () => {
-  let profile: Peer
-  let name: string
-  let success: boolean
   it('Get your profile, change your name, revert it back to current name', async (done) => {
 
+    let profile: Peer
+    let name: string
+    let success: boolean
+    
     // Simply get your display name
     name = await textile.profile.name()
     console.info('Your are connected:', name)
