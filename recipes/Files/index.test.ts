@@ -47,7 +47,7 @@ describe('Files API Recipes', () => {
     const thread = await textile.threads.getByKey(blobThreadKey)
     if (thread) {
       try {
-        const file = path.resolve(__dirname, '../assets/edba-3756.mp3')
+        const file = path.resolve(__dirname, '../data/edba-3756.mp3')
         const data = await fs.readFileSync(file, { encoding: 'base64' })
         const added = await textile.files.add(
                         data,
