@@ -43,7 +43,7 @@ describe('Files API Recipes', () => {
     done()
   })
 
-  it.only('Add and retrieve buffer data to a /blob schema Thread', async (done) => {
+  it('Add and retrieve buffer data to a /blob schema Thread', async (done) => {
     const thread = await textile.threads.getByKey(blobThreadKey)
     if (thread) {
       try {
