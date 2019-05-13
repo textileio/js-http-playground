@@ -54,6 +54,10 @@ describe('Files API Recipes', () => {
                         'hello world',
                         thread.id
                       )
+        const files = await textile.files.list()
+        const match = files.items.find((file) => file.block === added.block)
+        const status = match ? 'success' : 'failure'
+        console.info(`File add was a ${status}!`)
       } catch (error) {
         console.info('Blob example failed with error:', error)
       }
