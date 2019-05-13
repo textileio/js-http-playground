@@ -8,33 +8,32 @@ import textile, { Peer } from '@textile/js-http-client'
  * default ports.
  */
 
-jest.setTimeout(10000)
+jest.setTimeout(15000)
 
-describe('Explore connected profile', () => {
+describe('Profile API examples', () => {
   let profile: Peer
   let name: string
   let success: boolean
-  it('1. Get your profile name', async () => {
+  it('Get your profile, change your name, revert it back to current name', async (done) => {
+
+    // Simply get your display name
     name = await textile.profile.name()
-    await expect(name).toBeTruthy()
     console.info('Your are connected:', name)
-  })
-  it('2. Get your full profile', async () => {
+    
+    // Get your full profile record
     profile = await textile.profile.get()
-    await expect(profile.name).toEqual(name)
     console.info('Your ID is:', profile.id)
-  })
-  it('3. Update your profile name', async () => {
+
+    // Set your display name to 'Anonymous'
     success = await textile.profile.setName('Anonymous')
-    await expect(success).toBeTruthy()
     const updatedProfile = await textile.profile.get()
     console.info('Profile name updated to:', updatedProfile.name)
-    await expect(updatedProfile.name).toEqual('Anonymous')
-  })
-  it('4. Set your profile name back to original', async (done) => {
+
     success = await textile.profile.setName(name)
+    console.info('Your name is now reverted to:', name)
+
+    // Jest Tests to ensure your account reverted successfully
     await expect(success).toBeTruthy()
-    console.info('Your name is now back to:', name)
     await expect((await textile.profile.get()).name).toEqual(name)
     done()
   })
