@@ -4,7 +4,7 @@
   "description": "Useful examples of how to build with the JS HTTP Client",
   "main": "index.ts",
   "scripts": {
-    "run": "jest --no-watchman --bail --runInBand --no-watchman"
+    "lint": "./node_modules/tslint/bin/tslint  -c tslint.json --project ."
   },
   "repository": {
     "type": "git",
@@ -30,7 +30,8 @@
     "jest-cli": "^24.5.0",
     "jest-editor-support": "^25.0.1",
     "ts-jest": "^24.0.0",
-    "tslint": "^5.14.0",
-    "typescript": "^3.3.4000"
+    "tslint": "^5.16.0",
+    "typescript": "^3.3.4000",
+    "web-streams-polyfill": "^2.0.3"
   }
 }

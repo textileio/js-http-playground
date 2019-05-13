@@ -2,7 +2,7 @@
   "files.exclude": {
     "out": true,
     "node_modules/jest-editor-support/src": false,
-    "recipes/": true
+    "recipes/": false
   },
   "search.exclude": {
     "out": true,
@@ -12,13 +12,5 @@
   "eslint.enable": false,
   "tslint.configFile": "./tslint.json",
   "jest.pathToConfig": "./jest.config.js",
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll": true,
-    "source.organizeImports": true,
-    "source.deleteSemicolons": true
-  },
-  "prettier.semi": false,
-  "prettier.jsxSingleQuote": true,
-  "prettier.singleQuote": true
+  "editor.formatOnSave": false,
 }

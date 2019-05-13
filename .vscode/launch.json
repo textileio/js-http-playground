@@ -4,27 +4,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Current File",
-      "program": "${workspaceFolder}/node_modules/.bin/jest",
-      "args": [
-        "${fileBasenameNoExtension}",
-        "--bail",
-        "--runInBand",
-        "--config",
-        "--no-watchman",
-        "jest.config.js"
-      ],
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen",
-      "disableOptimisticBPs": true,
-      "windows": {
-        "program": "${workspaceFolder}/node_modules/jest/bin/jest",
-      }
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Profile",
+      "name": "Profile API",
       "program": "${workspaceFolder}/node_modules/.bin/jest",
       "args": [
         "${workspaceFolder}/recipes/Profile/",
@@ -44,10 +24,30 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Contacts Search",
+      "name": "Contacts Search API",
       "program": "${workspaceFolder}/node_modules/.bin/jest",
       "args": [
         "${workspaceFolder}/recipes/Contacts/",
+        "--bail",
+        "--runInBand",
+        "--config",
+        "--no-watchman",
+        "jest.config.js"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "disableOptimisticBPs": true,
+      "windows": {
+        "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Files API",
+      "program": "${workspaceFolder}/node_modules/.bin/jest",
+      "args": [
+        "${workspaceFolder}/recipes/Files/",
         "--bail",
         "--runInBand",
         "--config",

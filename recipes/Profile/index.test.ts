@@ -10,8 +10,8 @@ import textile, { Peer } from '@textile/js-http-client'
 
 jest.setTimeout(25000)
 
-describe('Profile API examples', () => {
-  it('Get your profile, change your name, revert it back to current name', async done => {
+describe('Profile API Examples', () => {
+  it('Get your profile, change your name, revert it back to current name', async (done) => {
     let profile: Peer
     let name: string
     let success: boolean
@@ -35,6 +35,6 @@ describe('Profile API examples', () => {
     // Jest Tests to ensure your account reverted successfully
     await expect(success).toBeTruthy()
     await expect((await textile.profile.get()).name).toEqual(name)
-    done()
+    return done()
   })
 })

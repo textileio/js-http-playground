@@ -1,5 +1,5 @@
 import textile, { Peer, QueryResult } from '@textile/js-http-client'
-import { ReadResult } from 'web-streams-polyfill';
+import { ReadResult } from 'web-streams-polyfill'
 
 /**
  * INFO:
@@ -32,10 +32,10 @@ describe('Contacts API Examples', () => {
     reader.read().then(read)
 
     // Wait 10s for search results to stream in
-    await (new Promise( (resolve) => setTimeout(resolve, 10000)))
+    await (new Promise((resolve) => setTimeout(resolve, 10000)))
     reader.cancel('timeout')
     console.info('Ending search after 10s')
     console.info('Contact search found:', `${resultCount} results`)
-    done()
+    return done()
   })
 })
