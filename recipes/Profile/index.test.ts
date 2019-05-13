@@ -8,19 +8,18 @@ import textile, { Peer } from '@textile/js-http-client'
  * default ports.
  */
 
-jest.setTimeout(15000)
+jest.setTimeout(25000)
 
 describe('Profile API examples', () => {
-  it('Get your profile, change your name, revert it back to current name', async (done) => {
-
+  it('Get your profile, change your name, revert it back to current name', async done => {
     let profile: Peer
     let name: string
     let success: boolean
-    
+
     // Simply get your display name
     name = await textile.profile.name()
     console.info('Your are connected:', name)
-    
+
     // Get your full profile record
     profile = await textile.profile.get()
     console.info('Your ID is:', profile.id)
