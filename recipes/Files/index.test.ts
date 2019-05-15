@@ -29,7 +29,7 @@ describe('Files API Recipes', () => {
     }
     try {
       const added = await textile.files.add(
-                      JSON.stringify({ latitude: 33.968333, longitude: -105.243333 }),
+                      { latitude: 33.968333, longitude: -105.243333 },
                       'home',
                       thread.id
                     )
