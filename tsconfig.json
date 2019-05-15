@@ -14,7 +14,7 @@
     "baseUrl": ".",
   },
   "include": [
-    "."
+    "recipes"
   ],
   "exclude": [
     "scripts",

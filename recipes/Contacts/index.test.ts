@@ -10,7 +10,7 @@ import { ReadResult } from 'web-streams-polyfill'
  */
 
 jest.setTimeout(15000)
-describe('Contacts API Examples', () => {
+describe('Contacts API Recipes', () => {
   it('Search contacts for Andrew', async (done) => {
     const stream = await textile.contacts.search('Andrew')
     const reader = stream.getReader()

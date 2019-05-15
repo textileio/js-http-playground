@@ -10,7 +10,7 @@ import textile, { Peer } from '@textile/js-http-client'
 
 jest.setTimeout(25000)
 
-describe('Profile API Examples', () => {
+describe('Profile API Recipes', () => {
   it('Get your profile and display name', async (done) => {
 
     // Simply get your display name
