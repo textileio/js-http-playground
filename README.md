@@ -39,5 +39,5 @@ Using VSCode, you can run any example in the recipes very easily.
 3. In the upper-left, there is a drop menu beside a green play button. Choose `Current File`.
 4. Click the green play button to see the series of examples in the file execute sequentially.
 
-![VSCode](https://raw.githubusercontent.com/textileio/js-http-playground/master/assets/vscode.gif)
+![VSCode](assets/vscode.gif?raw=true "VSCode Preview")
 
