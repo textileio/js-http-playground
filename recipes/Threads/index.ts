@@ -29,14 +29,10 @@ export const blobThreadKey = 'io.textile.playground-blobExample-v0.0.1'
 export async function createBlobThread() {
   try {
     await removeBlobThread()
-    // Setting up the required Threads for Files API examples below
-    const blobThreadSchema = schemas[blobThreadKey]
-    // Ensure the schema is available to the node
-    const blobSchema = await textile.schemas.add(blobThreadSchema)
     // Create the thread with the supplied schema, only if it doesn't exist
     const thread = await textile.threads.getByKey(blobThreadKey)
     if (!thread) {
-      await textile.threads.add('My Files', blobSchema.hash, blobThreadKey, 'private', 'invite_only')
+      await textile.threads.add('My Files', 'blob', blobThreadKey, 'private', 'invite_only')
     }
   } catch (error) {
     console.error('Blob thread setup failed')

@@ -1,5 +1,5 @@
 import textile from '@textile/js-http-client'
-import { createLocationDataThread, locationDataThreadKey } from '../Threads/index'
+import { createLocationDataThread, locationDataThreadKey, blobThreadKey, removeBlobThread, removeLocationDataThread } from '../Threads/index'
 
 /**
  * INFO:
@@ -9,14 +9,19 @@ import { createLocationDataThread, locationDataThreadKey } from '../Threads/inde
  * default ports.
  */
 
+jest.setTimeout(10000)
+
+beforeAll(async (done) => {
+  await removeBlobThread() // <- only remove it, since test below test will create new one
+  done()
+})
+
 describe('Threads API Recipes', () => {
   it('Create a thread using one of the default schemas', async (done) => {
-    const threadKey = 'io.textile.playground-blobSchema-v0.0.1'
-    const blobSchema = (await textile.schemas.defaults()).blob
-    const schema = await textile.schemas.add(blobSchema)
-    await textile.threads.add('Example Blobs', schema.hash, threadKey, 'public', 'invite_only')
 
-    const thread = await textile.threads.getByKey(threadKey)
+    await textile.threads.add('Example Blobs', 'blob', blobThreadKey, 'public', 'invite_only')
+
+    const thread = await textile.threads.getByKey(blobThreadKey)
     if (!thread) {
       console.info('Example locations thread does not exist')
       return done()
@@ -26,14 +31,20 @@ describe('Threads API Recipes', () => {
   })
 
   it('Create a thread a custom JSON schema', async (done) => {
-    // See the createLocationDataThread example in index.ts
     await createLocationDataThread()
+    // See the createLocationDataThread example in index.ts
     const thread = await textile.threads.getByKey(locationDataThreadKey)
     if (!thread) {
       console.info('Example locations thread does not exist')
       return done()
     }
-    await textile.threads.remove(thread.id)
     done()
   })
+})
+
+afterAll(async (done) => {
+  // Removing the Threads used in the Files API examples
+  await removeLocationDataThread()
+  await removeBlobThread()
+  done()
 })
