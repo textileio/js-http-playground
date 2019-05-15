@@ -26,7 +26,6 @@ describe('Threads API Recipes', () => {
       console.info('Example locations thread does not exist')
       return done()
     }
-    await textile.threads.remove(thread.id)
     done()
   })
 
