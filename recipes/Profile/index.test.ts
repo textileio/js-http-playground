@@ -8,7 +8,7 @@ import textile, { Peer } from '@textile/js-http-client'
  * default ports.
  */
 
-jest.setTimeout(25000)
+jest.setTimeout(10000)
 
 describe('Profile API Recipes', () => {
   it('Get your profile and display name', async (done) => {

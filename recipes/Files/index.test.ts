@@ -11,7 +11,7 @@ import { createLocationDataThread, locationDataThreadKey, createBlobThread, remo
  * default ports.
  */
 
-jest.setTimeout(35000)
+jest.setTimeout(10000)
 
 beforeAll(async (done) => {
   await createLocationDataThread()
