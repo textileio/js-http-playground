@@ -1,0 +1,59 @@
+version: 2
+
+jobs:
+    lint:
+        working_directory: ~/js-http-playground
+        docker:
+          - image: node:10.0.0
+        steps:
+            - checkout
+            - restore_cache:
+                key: node-v1-{{ checksum "package.json" }}-playground-node-10
+            - run: npm install
+            - run:
+                name: Lint
+                command: |
+                    npm run lint
+            - save_cache:
+                key: node-v1-{{ checksum "package.json" }}-playground-node-10
+                paths:
+                    - node_modules
+    test: 
+        working_directory: ~/js-http-playground
+        docker:
+          - image: textile/go-textile
+        steps:
+            - checkout
+            - restore_cache:
+                key: node-v1-{{ checksum "package.json" }}-playground
+            - run: npm run install
+            - run:
+                name: Test
+                command: |
+                    mkdir -p test-results/jest
+                    npm run ci
+                environment:
+                    JEST_JUNIT_OUTPUT: test-results/jest/junit.xml
+            - save_cache:
+                key: node-v1-{{ checksum "package.json" }}-playground
+                paths:
+                    - node_modules
+            - store_test_results:
+                path: test-results
+            - store_artifacts:
+                path: test-results
+
+workflows:
+    version: 2
+    js-http-playground:
+        jobs:
+            - lint:
+                filters:
+                    tags:
+                        only: /.*/
+            - test:
+                requires:
+                    - lint
+                filters:
+                    tags:
+                        only: /.*/
