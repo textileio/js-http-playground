@@ -1,6 +1,6 @@
 {
   "name": "js-http-playground",
-  "version": "0.2.18",
+  "version": "0.2.19",
   "description": "Useful examples of how to build with the JS HTTP Client",
   "main": "index.ts",
   "scripts": {

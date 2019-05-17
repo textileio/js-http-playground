@@ -23,8 +23,7 @@ describe('Files API Recipes', () => {
   it('Add and retrieve JSON data with a /json schema Thread', async (done) => {
     const thread = await textile.threads.getByKey(locationDataThreadKey)
     if (!thread) {
-      console.info('Example locations thread does not exist')
-      return done()
+      throw new Error('Recipe not run. Blob thread not found.')
     }
     const added = await textile.files.add(
                     { latitude: 33.968333, longitude: -105.243333 },
@@ -40,35 +39,37 @@ describe('Files API Recipes', () => {
 
   it('Add a plain string to a /blob schema Thread', async (done) => {
     const thread = await textile.threads.getByKey(blobThreadKey)
-    if (thread) {
-      const added = await textile.files.add(
-                      'lovely string data',
-                      'hello world',
-                      thread.id
-                    )
-      const files = await textile.files.list()
-      const match = files.items.find((file) => file.block === added.block)
-      const status = match ? 'success' : 'failure'
-      console.info(`File add was a ${status}!`)
+    if (!thread) {
+      throw new Error('Recipe not run. Blob thread not found.')
     }
+    const added = await textile.files.add(
+                    'lovely string data',
+                    'hello world',
+                    thread.id
+                  )
+    const files = await textile.files.list()
+    const match = files.items.find((file) => file.block === added.block)
+    const status = match ? 'success' : 'failure'
+    console.info(`File add was a ${status}!`)
     done()
   })
 
   it('Add and retrieve buffer data to a /blob schema Thread', async (done) => {
     const thread = await textile.threads.getByKey(blobThreadKey)
-    if (thread) {
-      const file = path.resolve(__dirname, '../data/edba-3756.mp3')
-      const data = await fs.readFileSync(file, { encoding: 'base64' })
-      const added = await textile.files.add(
-                      data,
-                      'hello world',
-                      thread.id
-                    )
-      const files = await textile.files.list()
-      const match = files.items.find((file) => file.block === added.block)
-      const status = match ? 'success' : 'failure'
-      console.info(`File add was a ${status}!`)
+    if (!thread) {
+      throw new Error('Recipe not run. Blob thread not found.')
     }
+    const file = path.resolve(__dirname, '../data/edba-3756.mp3')
+    const data = await fs.readFileSync(file, { encoding: 'base64' })
+    const added = await textile.files.add(
+                    data,
+                    'hello world',
+                    thread.id
+                  )
+    const files = await textile.files.list()
+    const match = files.items.find((file) => file.block === added.block)
+    const status = match ? 'success' : 'failure'
+    console.info(`File add was a ${status}!`)
     done()
   })
 })
