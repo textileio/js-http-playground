@@ -38,6 +38,22 @@ describe('Files API Recipes', () => {
     done()
   })
 
+  it('Add a plain string to a /blob schema Thread', async (done) => {
+    const thread = await textile.threads.getByKey(blobThreadKey)
+    if (thread) {
+      const added = await textile.files.add(
+                      'lovely string data',
+                      'hello world',
+                      thread.id
+                    )
+      const files = await textile.files.list()
+      const match = files.items.find((file) => file.block === added.block)
+      const status = match ? 'success' : 'failure'
+      console.info(`File add was a ${status}!`)
+    }
+    done()
+  })
+
   it('Add and retrieve buffer data to a /blob schema Thread', async (done) => {
     const thread = await textile.threads.getByKey(blobThreadKey)
     if (thread) {
