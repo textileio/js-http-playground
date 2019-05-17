@@ -1,5 +1,6 @@
 import textile from '@textile/js-http-client'
-import { createLocationDataThread, locationDataThreadKey, blobThreadKey, removeBlobThread, removeLocationDataThread } from '../Threads/index'
+import * as slateSchema from '../data/slatejs.json'
+import { createLocationDataThread, locationDataThreadKey, blobThreadKey, removeBlobThread, removeLocationDataThread, slateNotesThreadKey } from '../Threads/index'
 
 /**
  * INFO:
@@ -26,6 +27,7 @@ describe('Threads API Recipes', () => {
       console.info('Example locations thread does not exist')
       return done()
     }
+    console.info('Custom location data thread success!')
     done()
   })
 
@@ -37,9 +39,9 @@ describe('Threads API Recipes', () => {
       console.info('Example locations thread does not exist')
       return done()
     }
+    console.info('Custom JSON thread success!')
     done()
   })
-})
 
 afterAll(async (done) => {
   // Removing the Threads used in the Files API examples

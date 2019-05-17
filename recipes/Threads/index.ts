@@ -1,6 +1,8 @@
 import textile from '@textile/js-http-client'
 import * as schemas from '../data/schemas.json'
 
+export const slateNotesThreadKey = 'io.textile.playground-slateNotes-v0.0.1'
+
 export const locationDataThreadKey = 'io.textile.playground-locationData-v0.0.1'
 export async function createLocationDataThread() {
   try {
