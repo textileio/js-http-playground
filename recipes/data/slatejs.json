@@ -1,0 +1,28 @@
+{
+  "name": "slate",
+  "mill": "/json",
+  "plaintext": true,
+  "pin": true,
+  "json_schema": {
+    "$id": "https://example.com/slate.js.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Slate Schema",
+    "description": "Slate Schema Connector.",
+    "required": [],
+    "type": "object",
+    "properties": {
+      "document": {
+        "type": "object"
+      },
+      "blocks": {
+        "type": "object"
+      },
+      "inlines": {
+        "type": "object"
+      },
+      "rules": {
+        "type": "array"
+      }
+    }
+  }
+}
